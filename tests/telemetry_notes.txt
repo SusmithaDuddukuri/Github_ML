@@ -97,3 +97,4 @@
 - Patch #114: feat(feature-store): add caching layer for extracted spatial feature vectors [run #114]
 - Patch #115: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #115]
 - Patch #116: feat(data-quality): add null-safety checks and coordinate range sanitization [run #116]
+- Patch #117: feat(model-registry): register baseline metadata and inference schema for risk models [run #117]
