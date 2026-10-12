@@ -122,3 +122,4 @@
 - Patch #140: feat(data-quality): add null-safety checks and coordinate range sanitization [run #140]
 - Patch #141: feat(model-registry): register baseline metadata and inference schema for risk models [run #141]
 - Patch #142: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #142]
+- Patch #143: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #143]
