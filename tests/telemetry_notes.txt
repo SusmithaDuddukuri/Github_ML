@@ -127,3 +127,4 @@
 - Patch #145: feat(geo-pipeline): optimize spatial tile calculation and geohash boundary indexing [run #145]
 - Patch #146: feat(ml-scoring): tune confidence scoring thresholds for real-time anomaly classification [run #146]
 - Patch #147: feat(audit-engine): add structured telemetry audit log serialization for field events [run #147]
+- Patch #149: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #149]
