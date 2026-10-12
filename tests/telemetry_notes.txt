@@ -42,3 +42,4 @@
 - Patch #51: feat(audit-engine): add structured telemetry audit log serialization for field events [run #51]
 - Patch #53: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #53]
 - Patch #55: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #55]
+- Patch #58: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #58]
