@@ -81,3 +81,4 @@
 - Patch #98: feat(ml-scoring): tune confidence scoring thresholds for real-time anomaly classification [run #98]
 - Patch #99: feat(audit-engine): add structured telemetry audit log serialization for field events [run #99]
 - Patch #100: feat(alert-service): refine notification dispatch payload and webhook event schema [run #100]
+- Patch #101: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #101]
