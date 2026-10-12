@@ -26,3 +26,4 @@
 - Patch #33: feat(model-registry): register baseline metadata and inference schema for risk models [run #33]
 - Patch #34: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #34]
 - Patch #35: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #35]
+- Patch #36: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #36]
