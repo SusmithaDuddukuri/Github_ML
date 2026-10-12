@@ -34,3 +34,4 @@
 - Patch #41: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #41]
 - Patch #42: feat(feature-store): add caching layer for extracted spatial feature vectors [run #42]
 - Patch #43: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #43]
+- Patch #44: feat(data-quality): add null-safety checks and coordinate range sanitization [run #44]
