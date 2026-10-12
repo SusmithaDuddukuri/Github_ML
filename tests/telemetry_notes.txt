@@ -39,3 +39,4 @@
 - Patch #46: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #46]
 - Patch #47: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #47]
 - Patch #48: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #48]
+- Patch #51: feat(audit-engine): add structured telemetry audit log serialization for field events [run #51]
