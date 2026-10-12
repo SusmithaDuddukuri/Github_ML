@@ -94,3 +94,4 @@
 - Patch #111: feat(audit-engine): add structured telemetry audit log serialization for field events [run #111]
 - Patch #112: feat(alert-service): refine notification dispatch payload and webhook event schema [run #112]
 - Patch #113: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #113]
+- Patch #114: feat(feature-store): add caching layer for extracted spatial feature vectors [run #114]
