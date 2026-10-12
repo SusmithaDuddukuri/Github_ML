@@ -23,6 +23,10 @@ def test_register_login_me_and_overview():
     assert overview.status_code == 200
     assert overview.json()["total_alerts"] >= 1
 
+def test_register_rejects_invalid_email():
+    response = client.post("/api/auth/register", json={"email": "not-an-email", "full_name": "Invalid Email", "password": "correct-horse-battery"})
+    assert response.status_code == 422
+
 def test_protected_endpoint_requires_auth():
     assert client.get("/api/overview").status_code == 401
 
