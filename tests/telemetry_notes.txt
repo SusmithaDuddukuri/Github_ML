@@ -1,0 +1,2 @@
+# Telemetry & Anomaly Verification Notes
+- Patch #9: feat(model-registry): register baseline metadata and inference schema for risk models [run #9]
