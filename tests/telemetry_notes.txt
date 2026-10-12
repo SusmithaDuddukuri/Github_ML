@@ -41,3 +41,4 @@
 - Patch #48: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #48]
 - Patch #51: feat(audit-engine): add structured telemetry audit log serialization for field events [run #51]
 - Patch #53: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #53]
+- Patch #55: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #55]
