@@ -179,3 +179,15 @@ def test_invalid_review_status():
 
     with pytest.raises(ValidationError):
         AlertReviewInput(status="Pending")
+
+
+def test_review_notes_exceeding_maximum_length():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertReviewInput
+
+    with pytest.raises(ValidationError):
+        AlertReviewInput(
+            status="Verified",
+            review_notes="x" * 1001,
+        )
