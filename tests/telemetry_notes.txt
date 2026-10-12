@@ -53,3 +53,4 @@
 - Patch #70: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #70]
 - Patch #71: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #71]
 - Patch #72: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #72]
+- Patch #73: feat(geo-pipeline): optimize spatial tile calculation and geohash boundary indexing [run #73]
