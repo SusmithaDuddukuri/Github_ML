@@ -39,7 +39,6 @@ def test_register_login_me_and_overview():
     headers = {"Authorization": f"Bearer {token}"}
 
     assert client.get("/api/me", headers=headers).status_code == 200
-
     overview = client.get("/api/overview", headers=headers)
     assert overview.status_code == 200
     assert overview.json()["total_alerts"] >= 1
@@ -153,4 +152,21 @@ def test_confidence_below_minimum():
             latitude=10,
             longitude=20,
             confidence=0,
+        )
+
+
+def test_confidence_above_maximum():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertCreateInput
+
+    with pytest.raises(ValidationError):
+        AlertCreateInput(
+            title="Flood warning",
+            category="Flood",
+            severity="High",
+            region="North",
+            latitude=10,
+            longitude=20,
+            confidence=101,
         )
