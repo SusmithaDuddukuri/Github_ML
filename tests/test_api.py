@@ -121,3 +121,19 @@ def test_latitude_outside_valid_range():
             latitude=91,
             longitude=20,
         )
+
+
+def test_longitude_outside_valid_range():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertCreateInput
+
+    with pytest.raises(ValidationError):
+        AlertCreateInput(
+            title="Flood warning",
+            category="Flood",
+            severity="High",
+            region="North",
+            latitude=10,
+            longitude=181,
+        )
