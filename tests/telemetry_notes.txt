@@ -91,3 +91,4 @@
 - Patch #108: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #108]
 - Patch #109: feat(geo-pipeline): optimize spatial tile calculation and geohash boundary indexing [run #109]
 - Patch #110: feat(ml-scoring): tune confidence scoring thresholds for real-time anomaly classification [run #110]
+- Patch #111: feat(audit-engine): add structured telemetry audit log serialization for field events [run #111]
