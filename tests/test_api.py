@@ -47,3 +47,19 @@ def test_alert_title_too_short():
     from app.schemas import AlertCreateInput, AlertReviewInput
     with pytest.raises(ValidationError):
         AlertCreateInput(title="ab", category="Flood", severity="High", region="North", latitude=10, longitude=20)
+
+
+def test_review_notes_exceeding_maximum_length():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import (
+        AlertCreateInput,
+        AlertReviewInput,
+        RegisterInput,
+    )
+
+    with pytest.raises(ValidationError):
+        AlertReviewInput(
+            status="Verified",
+            review_notes="x" * 1001,
+        )
