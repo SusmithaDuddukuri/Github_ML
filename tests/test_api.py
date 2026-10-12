@@ -170,3 +170,12 @@ def test_confidence_above_maximum():
             longitude=20,
             confidence=101,
         )
+
+
+def test_invalid_review_status():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertReviewInput
+
+    with pytest.raises(ValidationError):
+        AlertReviewInput(status="Pending")
