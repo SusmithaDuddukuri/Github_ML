@@ -62,3 +62,4 @@
 - Patch #79: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #79]
 - Patch #80: feat(data-quality): add null-safety checks and coordinate range sanitization [run #80]
 - Patch #81: feat(model-registry): register baseline metadata and inference schema for risk models [run #81]
+- Patch #82: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #82]
