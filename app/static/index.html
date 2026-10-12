@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111b1b">
+<title>TerraSignal — Earth intelligence, made actionable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<section id="auth-screen" class="auth-screen">
+  <div class="auth-visual">
+    <a class="brand brand-light" href="/" aria-label="TerraSignal home"><span class="brand-mark"><i data-lucide="orbit"></i></span><span>terra<span class="brand-accent">signal</span></span></a>
+    <div class="auth-copy"><p class="eyebrow light-eyebrow"><span class="pulse"></span> EARTH INTELLIGENCE NETWORK</p><h1>See the change.<br><em>Understand the signal.</em></h1><p>Environmental intelligence for the people making decisions about our shared planet.</p></div>
+    <div class="visual-foot"><span>GLOBAL COVERAGE · LOCAL CONTEXT</span><span>EST. 2025</span></div>
+  </div>
+  <div class="auth-panel">
+    <div class="auth-mobile-brand brand"><span class="brand-mark"><i data-lucide="orbit"></i></span><span>terra<span class="brand-accent">signal</span></span></div>
+    <div class="auth-card">
+      <div class="auth-tabs"><button class="tab active" data-auth-tab="login">Sign in</button><button class="tab" data-auth-tab="register">Create account</button></div>
+      <div id="login-form-wrap"><h2>Welcome back</h2><p class="muted">Sign in to your intelligence workspace.</p>
+        <form id="login-form"><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@organization.com" required></label><label>Password<input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></label><button class="btn btn-primary btn-wide" type="submit">Sign in <i data-lucide="arrow-right"></i></button><p class="form-note">New to TerraSignal? <button type="button" class="text-button" data-auth-tab="register">Create an account</button></p></form>
+      </div>
+      <div id="register-form-wrap" hidden><h2>Start with a clear signal</h2><p class="muted">Create your secure workspace. New accounts start with analyst access.</p>
+        <form id="register-form"><label>Full name<input name="full_name" autocomplete="name" placeholder="Your name" minlength="2" required></label><label>Work email<input name="email" type="email" autocomplete="email" placeholder="you@organization.com" required></label><label>Password<input name="password" type="password" autocomplete="new-password" minlength="10" placeholder="At least 10 characters" required></label><button class="btn btn-primary btn-wide" type="submit">Create workspace <i data-lucide="arrow-right"></i></button><p class="form-note">By continuing, you agree to your organization's applicable policies.</p></form>
+      </div>
+      <p class="secure-note"><i data-lucide="shield-check"></i> Protected workspace · Role-based access</p>
+    </div>
+    <footer class="auth-footer"><span>© 2026 TerraSignal</span><span>Built for a changing world</span></footer>
+  </div>
+</section>
+
+<section id="app-screen" class="app-shell" hidden>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand sidebar-brand" href="#" data-page="overview"><span class="brand-mark"><i data-lucide="orbit"></i></span><span>terra<span class="brand-accent">signal</span></span></a>
+    <div class="workspace-label">WORKSPACE <button class="icon-button" aria-label="Workspace settings" data-page="settings"><i data-lucide="settings-2"></i></button></div>
+    <nav class="side-nav" aria-label="Main navigation">
+      <button class="nav-link active" data-page="overview"><i data-lucide="layout-dashboard"></i><span>Overview</span></button>
+      <button class="nav-link" data-page="explorer"><i data-lucide="map"></i><span>Signal explorer</span><span class="nav-count">06</span></button>
+      <button class="nav-link" data-page="alerts"><i data-lucide="scan-eye"></i><span>Alert inbox</span><span class="nav-dot"></span></button>
+      <div class="nav-section">ANALYSIS</div>
+      <button class="nav-link" data-page="research"><i data-lucide="microscope"></i><span>Research lab</span></button>
+      <button class="nav-link" data-page="models"><i data-lucide="workflow"></i><span>Model registry</span></button>
+      <div class="nav-section">WORKSPACE</div>
+      <button class="nav-link" data-page="organization"><i data-lucide="building-2"></i><span>Organization</span></button>
+      <button class="nav-link admin-only" data-page="admin" hidden><i data-lucide="shield"></i><span>Admin console</span></button>
+      <button class="nav-link" data-page="settings"><i data-lucide="sliders-horizontal"></i><span>Settings</span></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="help-card"><span class="help-icon"><i data-lucide="life-buoy"></i></span><strong>Need a hand?</strong><p>Explore the field guide to get started.</p><button data-page="guide" class="help-link">Open field guide <i data-lucide="arrow-up-right"></i></button></div><div class="profile-row"><div class="avatar" id="avatar">TS</div><div class="profile-meta"><strong id="user-name">TerraSignal user</strong><span id="user-role">Analyst</span></div><button class="icon-button" id="logout" aria-label="Sign out"><i data-lucide="log-out"></i></button></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button class="icon-button mobile-menu" id="menu-toggle" aria-label="Open navigation"><i data-lucide="menu"></i></button><div class="breadcrumbs"><span>Workspace</span><i data-lucide="chevron-right"></i><strong id="crumb">Overview</strong></div><div class="topbar-actions"><span class="system-status"><span class="status-dot"></span> Systems nominal</span><button class="icon-button" id="refresh" aria-label="Refresh data"><i data-lucide="refresh-cw"></i></button><button class="icon-button notification-button" data-page="alerts" aria-label="Open alerts"><i data-lucide="bell"></i><span></span></button><div class="top-avatar" id="top-avatar">TS</div></div></header>
+    <div class="page-wrap">
+      <section class="page active" id="page-overview">
+        <div class="page-heading"><div><p class="eyebrow">MONDAY, OCTOBER 12, 2026 <span class="eyebrow-line"></span> GLOBAL FEED</p><h1>Earth, in perspective.</h1><p class="page-subtitle">A considered view of the signals shaping our environment.</p></div><div class="heading-actions"><button class="btn btn-primary" id="open-new-alert-overview"><i data-lucide="plus-circle"></i> Enter alert</button><button class="btn btn-secondary" id="export-btn"><i data-lucide="download"></i> Export report</button><button class="btn btn-primary" data-page="explorer"><i data-lucide="scan"></i> Explore signals</button></div></div>
+        <div class="demo-banner"><i data-lucide="info"></i><span><strong>Human-in-the-Loop Safeguard</strong> — All newly reported signals are routed to the review team for manual verification and risk control before automated actions are triggered.</span><button id="dismiss-banner" aria-label="Dismiss preview notice"><i data-lucide="x"></i></button></div>
+        <div class="metric-grid">
+          <article class="metric-card"><div class="metric-top"><span>Signals in review</span><span class="metric-icon mint"><i data-lucide="scan-search"></i></span></div><div class="metric-value" id="metric-total">—</div><div class="metric-foot"><span class="metric-caption">Across monitored regions</span><span class="tiny-tag">ALL TYPES</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>High priority</span><span class="metric-icon coral"><i data-lucide="activity"></i></span></div><div class="metric-value" id="metric-high">—</div><div class="metric-foot"><span class="severity-mark"></span><span class="metric-caption">Require closer attention</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Mean confidence</span><span class="metric-icon blue"><i data-lucide="chart-no-axes-combined"></i></span></div><div class="metric-value"><span id="metric-confidence">—</span><small>%</small></div><div class="confidence-track"><span id="confidence-fill"></span></div><div class="metric-foot"><span class="metric-caption">Demo model scores</span><span class="metric-caption">Not validated</span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Regions observed</span><span class="metric-icon gold"><i data-lucide="globe-2"></i></span></div><div class="metric-value" id="metric-regions">—</div><div class="metric-foot"><span class="metric-caption">Distinct sample locations</span><i data-lucide="map-pin" class="tiny-icon"></i></div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel map-panel"><div class="panel-heading"><div><h2>Signal geography</h2><p>Spatial distribution of current demo alerts</p></div><button class="icon-button" aria-label="Open full explorer" data-page="explorer"><i data-lucide="maximize-2"></i></button></div><div id="overview-map" class="map"></div><div class="map-legend"><span><i class="legend-dot critical"></i>Critical</span><span><i class="legend-dot high"></i>High</span><span><i class="legend-dot medium"></i>Medium</span><span><i class="legend-dot low"></i>Low</span><button data-page="explorer">Open explorer <i data-lucide="arrow-up-right"></i></button></div></article>
+          <article class="panel activity-panel"><div class="panel-heading"><div><h2>Needs attention</h2><p>Signals ranked by model confidence</p></div><button class="link-button" data-page="alerts">View all <i data-lucide="arrow-up-right"></i></button></div><div id="priority-list" class="priority-list"><div class="loading-line"></div></div><div class="panel-bottom"><i data-lucide="clock-3"></i> Prioritization is illustrative in preview mode</div></article>
+        </div>
+        <div class="bottom-grid"><article class="panel insight-panel"><div class="panel-heading"><div><h2>Model operations</h2><p>Pipeline and inference readiness</p></div><span class="status-pill status-demo"><span></span> Demo mode</span></div><div class="pipeline"><div class="pipeline-step done"><span><i data-lucide="database"></i></span><div><strong>Data ingestion</strong><small>Seeded sample records</small></div><i data-lucide="check-circle-2" class="step-state"></i></div><div class="pipeline-connector"></div><div class="pipeline-step done"><span><i data-lucide="layers-3"></i></span><div><strong>Feature preparation</strong><small>Illustrative pipeline only</small></div><i data-lucide="check-circle-2" class="step-state"></i></div><div class="pipeline-connector"></div><div class="pipeline-step waiting"><span><i data-lucide="brain-circuit"></i></span><div><strong>Model inference</strong><small>No model endpoint connected</small></div><span class="waiting-tag">Not connected</span></div></div></article><article class="panel source-panel"><div class="panel-heading"><div><h2>Signal composition</h2><p>Distribution by event category</p></div><i data-lucide="chart-pie" class="heading-icon"></i></div><div id="composition" class="composition"></div><p class="chart-note">Based on seeded sample alerts · illustrative only</p></article></div>
+      </section>
+      <section class="page" id="page-explorer"><div class="page-heading"><div><p class="eyebrow">SPATIAL ANALYSIS</p><h1>Signal explorer</h1><p class="page-subtitle">Explore the geography behind each environmental signal.</p></div><div class="heading-actions"><button class="btn btn-primary" id="open-new-alert-explorer"><i data-lucide="plus-circle"></i> Enter alert</button><button class="btn btn-secondary" id="explorer-export"><i data-lucide="download"></i> Export CSV</button></div></div><div class="filter-bar"><div class="search-field"><i data-lucide="search"></i><input id="search-alerts" placeholder="Search region or signal..." aria-label="Search region or signal"></div><select id="filter-category" aria-label="Filter by category"><option>All categories</option><option>Deforestation</option><option>Water stress</option><option>Urban growth</option><option>Coastal change</option><option>Drought</option><option>Land cover</option></select><select id="filter-severity" aria-label="Filter by severity"><option>All severities</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select><select id="filter-status" aria-label="Filter by review status"><option>All statuses</option><option>Pending Review</option><option>Verified</option><option>Investigating</option><option>Action Taken</option><option>False Alarm</option></select><button class="btn btn-secondary" id="clear-filters"><i data-lucide="list-filter"></i> Clear</button></div><div class="panel explorer-map-panel"><div id="explorer-map" class="map large-map"></div><div class="map-footnote"><span><i data-lucide="map-pin"></i> Select a marker to inspect its signal</span><span>© OpenStreetMap contributors</span></div></div><div class="panel table-panel"><div class="panel-heading"><div><h2>Mapped signals</h2><p id="result-count">Loading records…</p></div><span class="data-label"><span class="status-dot"></span> HUMAN-VERIFIED PIPELINE</span></div><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Region</th><th>Severity</th><th>Confidence</th><th>Review Status</th><th>Action</th></tr></thead><tbody id="alerts-table"></tbody></table></div></div></section>
+      <section class="page" id="page-alerts"><div class="page-heading"><div><p class="eyebrow">TRIAGE & REVIEW TEAM</p><h1>Review & Alert Inbox</h1><p class="page-subtitle">Inspect user-entered alerts, conduct risk analysis, verify findings, and log mitigation actions.</p></div><div class="heading-actions"><button class="btn btn-primary" id="open-new-alert-inbox"><i data-lucide="plus-circle"></i> Enter alert</button><button class="btn btn-secondary" id="alerts-export"><i data-lucide="download"></i> Export alerts</button></div></div><div class="filter-bar"><div class="search-field"><i data-lucide="search"></i><input id="inbox-search" placeholder="Find an alert..." aria-label="Find an alert"></div><select id="inbox-severity" aria-label="Filter severity"><option>All severities</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select><select id="inbox-status" aria-label="Filter review status"><option>All statuses</option><option>Pending Review</option><option>Verified</option><option>Investigating</option><option>Action Taken</option><option>False Alarm</option></select></div><div id="inbox-list" class="inbox-list"></div></section>
+      <section class="page" id="page-admin"><div class="page-heading"><div><p class="eyebrow">PLATFORM OPERATIONS</p><h1>Admin console</h1><p class="page-subtitle">Account directory and recent audit activity.</p></div><button class="btn btn-secondary" id="refresh-admin"><i data-lucide="refresh-cw"></i> Refresh directory</button></div><div class="demo-banner"><i data-lucide="shield-check"></i><span>Admin routes are protected by server-side role checks. This page is only available to admin accounts.</span></div><div class="panel table-panel"><div class="panel-heading"><div><h2>Account directory</h2><p>Registered TerraSignal users</p></div></div><div class="table-scroll"><table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Created</th></tr></thead><tbody id="users-table"></tbody></table></div></div><div class="panel table-panel"><div class="panel-heading"><div><h2>Audit events</h2><p>Recent security-relevant actions</p></div></div><div class="table-scroll"><table><thead><tr><th>Time</th><th>User ID</th><th>Action</th><th>Detail</th></tr></thead><tbody id="audit-table"></tbody></table></div></div></section>
+      <section class="page" id="page-research"><div class="page-heading"><div><p class="eyebrow">INVESTIGATION WORKSPACE</p><h1>Research lab</h1><p class="page-subtitle">A place for reproducible analysis and collaborative field notes.</p></div><span class="status-pill status-demo"><span></span> Foundation</span></div><div class="feature-grid"><article class="panel feature-card"><i data-lucide="notebook-pen"></i><h2>Field notebooks</h2><p>Notebook persistence and collaborative editing are planned for the next iteration.</p><span class="feature-state">PLANNED</span></article><article class="panel feature-card"><i data-lucide="git-compare"></i><h2>Change comparisons</h2><p>Compare raster snapshots and annotation sets once a verified imagery provider is connected.</p><span class="feature-state">PLANNED</span></article><article class="panel feature-card"><i data-lucide="flask-conical"></i><h2>Experiment tracking</h2><p>Track datasets, parameters, model versions, and evaluation results.</p><span class="feature-state">PLANNED</span></article></div></section>
+      <section class="page" id="page-models"><div class="page-heading"><div><p class="eyebrow">ML OPERATIONS</p><h1>Model registry</h1><p class="page-subtitle">Understand which inference capabilities are connected and which are not.</p></div></div><div class="panel model-row"><div class="model-icon"><i data-lucide="brain-circuit"></i></div><div class="model-info"><strong>Land-cover change classifier</strong><p>Expected inputs: georeferenced imagery, observation dates, and region boundary.</p><span class="status-pill status-demo"><span></span> Not connected</span></div><div class="model-meta"><span>VERSION</span><strong>—</strong></div><div class="model-meta"><span>VALIDATION</span><strong>Pending</strong></div></div><div class="panel model-row"><div class="model-icon"><i data-lucide="droplets"></i></div><div class="model-info"><strong>Water stress estimator</strong><p>Expected inputs: surface water history, precipitation, and vegetation indices.</p><span class="status-pill status-demo"><span></span> Not connected</span></div><div class="model-meta"><span>VERSION</span><strong>—</strong></div><div class="model-meta"><span>VALIDATION</span><strong>Pending</strong></div></div></section>
+      <section class="page" id="page-organization"><div class="page-heading"><div><p class="eyebrow">YOUR TEAM</p><h1>Organization</h1><p class="page-subtitle">Organization management and shared access controls.</p></div></div><div class="panel empty-state"><i data-lucide="building-2"></i><h2>Organization workspace foundation</h2><p>Multi-tenant organizations, team invitations, billing, and organization-level data boundaries are planned. Current accounts are individual and role-scoped.</p></div></section>
+      <section class="page" id="page-settings"><div class="page-heading"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1><p class="page-subtitle">Your account and workspace details.</p></div></div><div class="panel settings-panel"><div class="settings-item"><div class="settings-symbol"><i data-lucide="user-round"></i></div><div><strong>Account profile</strong><p id="settings-name">—</p><small id="settings-email">—</small></div></div><div class="settings-item"><div class="settings-symbol"><i data-lucide="shield-check"></i></div><div><strong>Access role</strong><p id="settings-role">—</p><small>Permissions are enforced by the API.</small></div></div><div class="settings-item"><div class="settings-symbol"><i data-lucide="key-round"></i></div><div><strong>Authentication</strong><p>Bearer access token</p><small>Short-lived token; refresh-token rotation and MFA are not yet implemented.</small></div></div><div class="settings-item"><div class="settings-symbol"><i data-lucide="database"></i></div><div><strong>Data environment</strong><p>Seeded preview dataset</p><small>Production provider integration is pending.</small></div></div></div></section>
+      <section class="page" id="page-guide"><div class="page-heading"><div><p class="eyebrow">GETTING STARTED</p><h1>Field guide</h1><p class="page-subtitle">A short guide to interpreting this workspace responsibly.</p></div></div><div class="panel guide-content"><h2>Read a signal, not just a score.</h2><p>Each alert in this preview is a seeded example. Its confidence value is illustrative and is not produced by a trained model. Severity indicates the sample triage category, not a verified real-world risk.</p><h3>Explore the map</h3><p>Use Signal explorer to filter by category and severity. Select a marker to inspect the record and use CSV export to share the sample dataset.</p><h3>Respect data provenance</h3><p>Before operational use, connect a documented imagery or environmental data provider, store source timestamps and lineage, and validate every model against a representative labeled dataset.</p><h3>Access roles</h3><p>Accounts are assigned analyst access by default. Admin access is bootstrapped through the configured email at registration. Never expose the bootstrap configuration or development secret in production.</p></div></section>
+    </div>
+    <footer class="app-footer"><span>TerraSignal <span class="footer-sep">/</span> Earth intelligence, made actionable.</span><span><i data-lucide="shield-check"></i> Secure workspace <span class="footer-sep">·</span> Preview build 0.1</span></footer>
+  </main>
+</section>
+
+<!-- Enter Alert Modal (User Form) -->
+<div id="modal-enter-alert" class="modal-backdrop" hidden>
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h3><i data-lucide="plus-circle" class="modal-title-icon"></i> Report New Ground / Sensor Alert</h3>
+        <p class="muted">Submit suspected environmental anomaly for Human Review Team verification.</p>
+      </div>
+      <button type="button" class="icon-button close-modal" data-close-modal="modal-enter-alert"><i data-lucide="x"></i></button>
+    </div>
+    <form id="form-enter-alert">
+      <div class="form-grid">
+        <label>Alert Title / Signal Summary
+          <input name="title" placeholder="e.g., Unmonitored forest clearing activity" required minlength="3" maxlength="180">
+        </label>
+        <div class="form-row">
+          <label>Category
+            <select name="category" required>
+              <option value="Deforestation">Deforestation</option>
+              <option value="Water stress">Water stress</option>
+              <option value="Urban growth">Urban growth</option>
+              <option value="Coastal change">Coastal change</option>
+              <option value="Drought">Drought</option>
+              <option value="Land cover">Land cover</option>
+            </select>
+          </label>
+          <label>Severity Level
+            <select name="severity" required>
+              <option value="Critical">Critical</option>
+              <option value="High" selected>High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Region / Locality
+            <input name="region" placeholder="e.g., Roraima Basin, Brazil" required minlength="2">
+          </label>
+          <label>Initial Risk Confidence (%)
+            <input name="confidence" type="number" min="1" max="100" value="85" required>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Latitude
+            <input name="latitude" type="number" step="any" min="-90" max="90" placeholder="e.g. 1.250" required>
+          </label>
+          <label>Longitude
+            <input name="longitude" type="number" step="any" min="-180" max="180" placeholder="e.g. -61.350" required>
+          </label>
+        </div>
+        <label>Observations / Sensor Context
+          <textarea name="description" rows="3" placeholder="Provide background context, sensor readings, or field telemetry..."></textarea>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <span class="safeguard-badge"><i data-lucide="shield-alert"></i> Routes directly to Review Team queue</span>
+        <button type="button" class="btn btn-secondary close-modal" data-close-modal="modal-enter-alert">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i data-lucide="send"></i> Submit Alert for Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Review & Action Modal (Review Team Form) -->
+<div id="modal-review-action" class="modal-backdrop" hidden>
+  <div class="modal-box modal-box-large">
+    <div class="modal-header">
+      <div>
+        <h3><i data-lucide="check-check" class="modal-title-icon"></i> Review Team Assessment & Action</h3>
+        <p class="muted">Validate anomaly telemetry and execute mitigating risk actions.</p>
+      </div>
+      <button type="button" class="icon-button close-modal" data-close-modal="modal-review-action"><i data-lucide="x"></i></button>
+    </div>
+    <div class="review-details" id="review-alert-summary"></div>
+    <form id="form-review-alert">
+      <input type="hidden" name="alert_id" id="review-alert-id">
+      <div class="form-grid">
+        <label>Review Decision / New Status
+          <select name="status" id="review-status-select" required>
+            <option value="Verified">Verified (Confirmed Anomaly - Escalated)</option>
+            <option value="Action Taken">Action Taken (Risk Mitigation Deployed)</option>
+            <option value="Investigating">Investigating (Additional Telemetry Needed)</option>
+            <option value="False Alarm">False Alarm (Dismiss Sensor Noise)</option>
+            <option value="Rejected">Rejected (Not an Anomaly)</option>
+          </select>
+        </label>
+        <label>Review Assessment Notes
+          <textarea name="review_notes" rows="2" placeholder="Record verification criteria, sensor cross-check findings..." required></textarea>
+        </label>
+        <label>Mitigation Action Taken
+          <textarea name="action_taken" rows="2" placeholder="e.g., Notified regional forestry patrol, adjusted automated threshold, dispatched field audit..." required></textarea>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-modal" data-close-modal="modal-review-action">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i data-lucide="shield-check"></i> Commit Decision & Action</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="/static/app.js"></script>
+</body></html>
