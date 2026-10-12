@@ -106,6 +106,23 @@ def test_alert_title_too_short():
         )
 
 
+def test_alert_description_exceeding_maximum_length():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertCreateInput
+
+    with pytest.raises(ValidationError):
+        AlertCreateInput(
+            title="Flood warning",
+            category="Flood",
+            severity="High",
+            region="North",
+            latitude=10,
+            longitude=20,
+            description="x" * 2001,
+        )
+
+
 def test_latitude_outside_valid_range():
     import pytest
     from pydantic import ValidationError
