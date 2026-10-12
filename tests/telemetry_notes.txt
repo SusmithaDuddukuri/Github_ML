@@ -111,3 +111,4 @@
 - Patch #128: feat(data-quality): add null-safety checks and coordinate range sanitization [run #128]
 - Patch #130: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #130]
 - Patch #131: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #131]
+- Patch #132: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #132]
