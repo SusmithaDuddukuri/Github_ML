@@ -102,3 +102,4 @@
 - Patch #119: feat(drift-detector): calibrate distribution drift detection statistics for land cover data [run #119]
 - Patch #120: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #120]
 - Patch #121: feat(geo-pipeline): optimize spatial tile calculation and geohash boundary indexing [run #121]
+- Patch #122: feat(ml-scoring): tune confidence scoring thresholds for real-time anomaly classification [run #122]
