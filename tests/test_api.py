@@ -39,6 +39,7 @@ def test_register_login_me_and_overview():
     headers = {"Authorization": f"Bearer {token}"}
 
     assert client.get("/api/me", headers=headers).status_code == 200
+
     overview = client.get("/api/overview", headers=headers)
     assert overview.status_code == 200
     assert overview.json()["total_alerts"] >= 1
@@ -64,8 +65,10 @@ def test_admin_endpoint_forbidden_for_analyst():
             },
         )
 
+    assert r.status_code == 200
     token = r.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
+
     assert client.get("/api/admin/users", headers=headers).status_code == 403
 
 
@@ -85,8 +88,10 @@ def test_admin_bootstrap_can_access_directory():
             },
         )
 
+    assert r.status_code == 200
     token = r.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
+
     assert client.get("/api/admin/users", headers=headers).status_code == 200
 
 
