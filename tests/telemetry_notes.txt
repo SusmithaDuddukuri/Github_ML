@@ -68,3 +68,4 @@
 - Patch #85: feat(geo-pipeline): optimize spatial tile calculation and geohash boundary indexing [run #85]
 - Patch #86: feat(ml-scoring): tune confidence scoring thresholds for real-time anomaly classification [run #86]
 - Patch #87: feat(audit-engine): add structured telemetry audit log serialization for field events [run #87]
+- Patch #88: feat(alert-service): refine notification dispatch payload and webhook event schema [run #88]
