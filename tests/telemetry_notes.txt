@@ -45,3 +45,4 @@
 - Patch #58: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #58]
 - Patch #60: feat(export-formatter): support formatted JSON export alongside CSV incident reports [run #60]
 - Patch #63: feat(audit-engine): add structured telemetry audit log serialization for field events [run #63]
+- Patch #65: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #65]
