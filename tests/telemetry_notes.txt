@@ -1,2 +1,3 @@
 # Telemetry & Anomaly Verification Notes
 - Patch #9: feat(model-registry): register baseline metadata and inference schema for risk models [run #9]
+- Patch #10: feat(telemetry-ingest): implement streaming batch ingestion buffer for sensor packets [run #10]
