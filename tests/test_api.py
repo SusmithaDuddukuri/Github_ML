@@ -67,3 +67,23 @@ def test_category_too_short():
             latitude=10,
             longitude=20,
         )
+
+
+def test_category_too_short():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import (
+        AlertCreateInput,
+        AlertReviewInput,
+        RegisterInput,
+    )
+
+    with pytest.raises(ValidationError):
+        AlertCreateInput(
+            title="Flood warning",
+            category="X",
+            severity="High",
+            region="North",
+            latitude=10,
+            longitude=20,
+        )
