@@ -39,3 +39,11 @@ def test_admin_bootstrap_can_access_directory():
         r = client.post("/api/auth/login", json={"email":"root@example.com","password":"admin-long-password"})
     token = r.json()["access_token"]
     assert client.get("/api/admin/users", headers={"Authorization":f"Bearer {token}"}).status_code == 200
+
+
+def test_alert_title_too_short():
+    import pytest
+    from pydantic import ValidationError
+    from app.schemas import AlertCreateInput, AlertReviewInput
+    with pytest.raises(ValidationError):
+        AlertCreateInput(title="ab", category="Flood", severity="High", region="North", latitude=10, longitude=20)
