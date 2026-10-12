@@ -59,3 +59,4 @@
 - Patch #76: feat(alert-service): refine notification dispatch payload and webhook event schema [run #76]
 - Patch #77: feat(map-render): enhance Leaflet map marker rendering performance under cluster density [run #77]
 - Patch #78: feat(feature-store): add caching layer for extracted spatial feature vectors [run #78]
+- Patch #79: feat(security-rbac): strengthen role validation decorator for administrative review routes [run #79]
